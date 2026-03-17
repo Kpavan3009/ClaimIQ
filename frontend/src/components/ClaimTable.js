@@ -28,10 +28,13 @@ function ClaimTable() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearch(search);
-      setPage(1);
     }, 300);
     return () => clearTimeout(timer);
   }, [search]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [debouncedSearch]);
 
   const loadClaims = useCallback(async () => {
     setLoading(true);
@@ -63,11 +66,12 @@ function ClaimTable() {
 
   const handleSort = (key) => {
     if (sortKey === key) {
-      setSortDir(sortDir === 'asc' ? 'desc' : 'asc');
+      setSortDir((prev) => (prev === 'asc' ? 'desc' : 'asc'));
     } else {
       setSortKey(key);
       setSortDir('desc');
     }
+    setPage(1);
   };
 
   const totalPages = Math.ceil(total / pageSize);
