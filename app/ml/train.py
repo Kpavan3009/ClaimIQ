@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 import joblib
 import os
 from sklearn.model_selection import train_test_split
@@ -14,7 +13,7 @@ from app.ml.feature_engineering import extract_features
 def main():
     df = pd.read_csv("data/claims.csv")
 
-    X, feature_names = extract_features(df)
+    X, feature_names = extract_features(df, fit_mode=True, encoders_path="models")
     y = (df["status"] == "denied").astype(int).values
 
     pos_count = y.sum()
@@ -32,7 +31,6 @@ def main():
         "scale_pos_weight": scale_pos_weight,
         "eval_metric": "logloss",
         "random_state": 42,
-        "use_label_encoder": False,
     }
 
     mlflow.set_experiment("denial_prediction")
