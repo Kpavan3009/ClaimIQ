@@ -1,5 +1,18 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
+import ClaimTable from './components/ClaimTable';
+import ClaimDetail from './components/ClaimDetail';
+
+function NavLink({ to, children }) {
+  const location = useLocation();
+  const active = location.pathname === to;
+  return (
+    <Link to={to} className={`nav-link ${active ? 'nav-active' : ''}`}>
+      {children}
+    </Link>
+  );
+}
 
 function App() {
   return (
@@ -7,14 +20,14 @@ function App() {
       <div className="app-container">
         <nav className="sidebar">
           <div className="logo">ClaimIQ</div>
-          <Link to="/" className="nav-link">Dashboard</Link>
-          <Link to="/claims" className="nav-link">Claims</Link>
+          <NavLink to="/">Dashboard</NavLink>
+          <NavLink to="/claims">Claims</NavLink>
         </nav>
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<div>Dashboard</div>} />
-            <Route path="/claims" element={<div>Claims</div>} />
-            <Route path="/claims/:id" element={<div>Claim Detail</div>} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/claims" element={<ClaimTable />} />
+            <Route path="/claims/:id" element={<ClaimDetail />} />
           </Routes>
         </main>
       </div>
