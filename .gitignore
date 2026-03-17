@@ -1,0 +1,16 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+.mypy_cache/
+mlruns/
+*.pkl
+*.joblib
+node_modules/
+build/
+dist/
+.pytest_cache/
+*.egg-info/
+.DS_Store
+claimiq.db
