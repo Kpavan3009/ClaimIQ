@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from app.database import get_db
@@ -33,7 +33,7 @@ def get_claim(claim_id: int, db: Session = Depends(get_db)):
     service = ClaimService(db)
     claim = service.get_claim_by_id(claim_id)
     if not claim:
-        return {"error": "claim not found"}
+        raise HTTPException(status_code=404, detail="claim not found")
     return claim
 
 
