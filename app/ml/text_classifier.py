@@ -1,8 +1,5 @@
 import joblib
 from pathlib import Path
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import LogisticRegression
-from sklearn.pipeline import Pipeline
 
 
 class DenialReasonClassifier:
@@ -26,6 +23,10 @@ class DenialReasonClassifier:
 
 
 def build_pipeline():
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.pipeline import Pipeline
+
     return Pipeline([
         ("tfidf", TfidfVectorizer(
             max_features=5000,

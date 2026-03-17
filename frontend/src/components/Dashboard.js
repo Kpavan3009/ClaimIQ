@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchClaims, fetchAgingSummary } from '../api';
+import { fetchClaims } from '../api';
 import AgingChart from './AgingChart';
 import ClaimTable from './ClaimTable';
 
