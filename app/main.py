@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import engine, Base
-from app.routes import claims
+from app.routes import claims, predictions
 
 
 @asynccontextmanager
@@ -24,3 +24,4 @@ app.add_middleware(
 )
 
 app.include_router(claims.router)
+app.include_router(predictions.router)
