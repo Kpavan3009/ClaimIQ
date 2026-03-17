@@ -1,0 +1,12 @@
+__pycache__
+*.pyc
+.env
+.git
+.github
+tests
+data
+mlruns
+mlflow.db
+*.db
+frontend/node_modules
+.venv
